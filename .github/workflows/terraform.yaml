@@ -10,6 +10,12 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
 
+    env:
+      TF_VAR_client_id: ${{ secrets.TF_VAR_client_id }} 
+      TF_VAR_client_secret: ${{ secrets.TF_VAR_client_secret }} 
+      TF_VAR_subscription_id: ${{ secrets.TF_VAR_subscription_id }}
+      TF_VAR_tenant_id: ${{ secrets.TF_VAR_tenant_id }} 
+
 
     steps:
       - uses: actions/checkout@master
@@ -20,4 +26,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Terraform Validate
         id: validate
-        run: terraform validate        
+        run: terraform validate
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan 
+        continue-on-error: true    
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Terraform APPLY
+        id: Apply
+        run: terraform apply -auto-approve 
+        continue-on-error: true    
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+    
