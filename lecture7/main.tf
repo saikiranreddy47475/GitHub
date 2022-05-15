@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "example" {
-  name     = "example-FisherInvestments"
+  name     = "example-FisherInvestments-Financial"
   location = "West Europe"
 }
 
