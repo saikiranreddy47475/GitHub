@@ -3,14 +3,6 @@ resource "azurerm_resource_group" "example" {
   location = "West Europe"
 }
 
-terraform {
-  required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = "3.5.0"
-    }
-  }
-}
 
 provider "azurerm" {
   subscription_id = "60e878ac-27e6-486e-8c19-921a03e3c03a"
